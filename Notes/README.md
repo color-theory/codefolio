@@ -82,6 +82,3 @@ You know Big-O. Big-O represents the theoretical standard worst case in complexi
 - Cubic O(n^3): Grows as the cube.
 - Exponential O(2^n): Grows twice the number of operations for every input added.
 - Factorial O(n!): Let's just say it's big.
-
-
-
