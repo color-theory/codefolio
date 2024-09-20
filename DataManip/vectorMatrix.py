@@ -1,4 +1,5 @@
 import numpy as np
+from itertools import permutations
 
 vector1 = np.array([1,2,3])
 print("Vector with scalar:")
@@ -77,3 +78,25 @@ myRandomMatrix = np.random.random((3,3))
 print(myRandomMatrix)
 myMatrixInverse = np.linalg.inv(myRandomMatrix)
 print(np.allclose(myRandomMatrix.dot(myMatrixInverse), np.identity(3))) # True
+
+# Determinant
+print("Determinant:")
+print(np.linalg.det(matrix1)) # 0.0 because it is singular
+print(np.linalg.det(matrix2)) # 0.0 because it is singular
+print(np.linalg.det(myRandomMatrix)) # not 0.0 because it is not singular
+
+# It is important to understand that a matrix cannot be inverted if it is singular. 
+# This is due to the fact that the determinant of a singular matrix is 0 
+# and the determinant is used as the denominator in the formula for the inverse of a matrix.
+
+# Permutations
+print("Permutations:")
+myVector = np.array([1,2,3,4])
+print(np.random.permutation(myVector)) # [3 1 4 2]
+
+for i in permutations(myVector):
+	print(i)
+
+# list comprehension
+print("List comprehension:")
+[print(i) for i in permutations(myVector)]
