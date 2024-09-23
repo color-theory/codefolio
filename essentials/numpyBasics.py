@@ -1,5 +1,6 @@
 import numpy as np
-from itertools import permutations
+import random
+from itertools import permutations, combinations
 
 vector1 = np.array([1,2,3])
 print("Vector with scalar:")
@@ -95,8 +96,31 @@ myVector = np.array([1,2,3,4])
 print(np.random.permutation(myVector)) # [3 1 4 2]
 
 for i in permutations(myVector):
-	print(i)
+	print(f"({i[0]}, {i[1]}, {i[2]}, {i[3]})")
 
 # list comprehension
 print("List comprehension:")
-[print(i) for i in permutations(myVector)]
+[print(f"({i[0]}, {i[1]}, {i[2]}, {i[3]})") for i in permutations(myVector)]
+
+# Combinations
+print("Combinations:")
+for i in combinations(myVector, 2):
+	print(f"({i[0]}, {i[1]})")
+
+# list comprehension
+print("List comprehension:")
+[print(f"({i[0]}, {i[1]})") for i in combinations(myVector, 2)]
+
+# sample
+pool = []
+comb = combinations(myVector, 2)
+for i in comb:
+	pool.append(i)
+
+print(random.sample(pool, 2))
+
+
+# Repetitions
+listWithDuplicates = [1,2,2,3,3,5,6,3,4,6,7,6,5,4,4,4]
+deDuped = list(set(listWithDuplicates))
+print(deDuped) # [1, 2, 3, 4, 5, 6, 7]

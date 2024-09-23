@@ -82,3 +82,44 @@ You know Big-O. Big-O represents the theoretical standard worst case in complexi
 - Cubic O(n^3): Grows as the cube.
 - Exponential O(2^n): Grows twice the number of operations for every input added.
 - Factorial O(n!): Let's just say it's big.
+
+# 03 - working with google collab
+Gonna skip this as I'd rather work on my local machine
+
+# 04 - Essential Data Manipulations
+
+## Vectors
+
+#### Operations 
+- Adding vectors is element-wise.
+- Multiplying a scalar and a vector is also element-wise.
+While some libraries allow addition of scalars to vectors, it should be known that this is broadcasting that scalar value to a vector of the same size as the one you are adding. It is a shortcut that serves practical value, but is not technically valid or fundamental in pure linear algebra.
+
+multiplying vectors is also element-wise, though you can also find a dot-product, which is the sum of all elements multiplied.
+
+For example [1,2] * [2,3] = [2,6](elementwise) or 8(dot).
+
+## Matrices
+
+#### Operations
+- addition is element-wise
+- multiplication is similar to vectors in that it can be done element-wise, but the dot-product is very important
+- An identity matrix is one that, when multiplied to a different matrix, produces the same matrix. it is filled with zeros and has 1's going diagonally to the lower right.
+- An inverse of a matrix is such that when multiplied against the original matrix will produce an identity matrix.
+
+## Combinations the Right Way
+In order to make algorithms do what you want them to do, it is important to manipulate data sequences into the form that best suits your needs. Permutations, combinations, repetitions
+
+#### Permutations
+Raw data can come in a multitude of ways, and while it has meaning, it may not be what you need to input into an algorithm.
+A _permutation_ is a reordering of data so that it presents a different view. For example, this could be a randomizing of the order of the data received. For a 3 dimensional vector [1,2,3], there are 6 permutations, but for [1,2,2], there are only 3. Because of the nature of _permutations_ from a mathematical standpoint, we cannot simply reorder every index for all possible combinations, but rather must also check for duplicate permutations and remove them. 
+
+#### Combinations
+Sometimes we want to get only a small portion of the dataset rather than the whole thing. In this case, combinations of a specific length. So if you take a vector of [1,2,3] and want the 2-number combinations, you would get [1,2], [1,3], and [2,3].
+
+## Recursion
+Recursion provides us a with an intuitive understanding for how certain problems can be addressed with a function that calls itself as part of the algorithm. Remember that this can also grow out of hand if you're not careful, so check whether your language supports tail-call optimization and be aware of your resource usage. Some examples of where recursion can be useful is finding a factorial or performing a simple binary search, but know that there are iterative approaches to these problems as well.
+
+# 05 - Creating Your own Matrix Class
+Using 3rd party libraries can save you a lot of time and effort and give you the benefit of community vetted and professional source code that has evolved over time. But sometimes you don't need the bloat that comes with the most useful libraries and you lose some of the control that you would want when working on your projects. Breaking changes happen all the time in the open source world, and if you aren't careful, a single malicious user could cost your company millions of dollars. If you're working in a monolithic legacy project, you could have  dozens, if not hundreds of outdated dependencies that are no longer even being used creating a giant liability. That being said, it makes more sense to use a well-trusted math library than to try to reinvent the wheel, _unless_ as in this case, you're wanting to learn how these libraries work under the hood.
+
