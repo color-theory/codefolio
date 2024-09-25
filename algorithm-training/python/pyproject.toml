@@ -1,14 +1,16 @@
 [tool.poetry]
-name = "stringeralgorithmsandcv"
+name = "pythonpoetry"
 version = "0.1.0"
-description = ""
+description = "algorithms in python with poetry"
 authors = ["Color <jgstringer@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 numpy = "^2.1.1"
-
+mymath = {path = "mymath"}
+pytest = "^8.3.3"
 
 [build-system]
 requires = ["poetry-core"]

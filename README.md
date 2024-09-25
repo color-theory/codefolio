@@ -7,5 +7,7 @@ The purpose of this repository is three-fold:
 - Become even more familiar with Python, C#, and Typescript
 - Update my online CV.
 
+_Note: I think I'd like to do something fun with this project. Maybe I'll have it spin up a webserver, host the markdown files as notes as pages in a react website, but also grab the various code that I write and output those directly as the source code examples in a tabular design._
 
-I think I'd like to do something fun with this project. Maybe I'll have it spin up a webserver, host the markdown files as notes as pages in a react website, but also grab the various code that I write and output those directly as the source code examples in a tabular design.
+## Structure
+This repository is going to be a monorepo of sorts, as I explect my website to leverage the code that I write in the algorithm training section as examples.
