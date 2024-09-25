@@ -10,6 +10,7 @@ package-mode = false
 python = "^3.12"
 numpy = "^2.1.1"
 mymath = {path = "mymath"}
+pytest = "^8.3.3"
 
 [build-system]
 requires = ["poetry-core"]
