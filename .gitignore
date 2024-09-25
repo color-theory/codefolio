@@ -1,5 +1,5 @@
 node_modules
-dotnet/bin
-dotnet/obj
+bin
+obj
 __pycache__
 .pytest_cache
