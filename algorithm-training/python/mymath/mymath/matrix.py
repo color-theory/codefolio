@@ -22,7 +22,7 @@ class Matrix:
 				self.dataCount += 1
 			self.matrix.append(self.matrixRow)
 	
-	def __add__(self, value):
+	def add(self, value):
 		if( type(value) == int):
 			self.tempMatrixList = []
 			for i in range(self.rows):
@@ -39,5 +39,47 @@ class Matrix:
 			return NotImplemented
 		return Matrix(self.rows, self.columns, self.tempMatrixList)
 
+	def __add__(self, value):
+		return self.add(value)
+	
 	def __radd__(self, other):
-		return self.__add__(other)	
+		return self.add(other)
+
+	def multiply(self, value):
+		if( type(value) == int):
+			self.tempMatrixList = []
+			for i in range(self.rows):
+				for j in range(self.columns):
+					self.tempMatrixList.append(self.matrix[i][j] * value)
+		elif( type(value) == Matrix):
+			self.tempMatrixList = []
+			if self.columns != value.columns or self.rows != value.rows:
+				raise ValueError("Matrices are not of the same size")
+			for i in range(self.rows):
+				for j in range(value.columns):
+					self.tempMatrixList.append(self.matrix[i][j] * value.matrix[i][j])
+		else:
+			return NotImplemented
+		return Matrix(self.rows, self.columns, self.tempMatrixList)
+	
+	def __mul__(self, value):
+		return self.multiply(value)
+	
+	def __rmul__(self, other):
+		return self.multiply(other)
+	
+	def dot(self, value):
+		if( type(value) == Matrix):
+			if self.columns != value.rows:
+				raise ValueError("Matrices are not of compatible size")
+			self.tempMatrixList = []
+			for i in range(self.rows):
+				for j in range(value.columns):
+					self.tempProduct = 0
+					for k in range(self.columns):
+						self.tempProduct += self.matrix[i][k] * value.matrix[k][j]
+					self.tempMatrixList.append(self.tempProduct)
+		else:
+			return NotImplemented
+		return Matrix(self.rows, value.columns, self.tempMatrixList)
+	

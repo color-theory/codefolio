@@ -24,3 +24,22 @@ class TestMatrix:
 			result = sample_2x2_matrix + 123.24
 		with pytest.raises(TypeError):
 			result = sample_2x2_matrix + "string"
+
+	def test_multiplication(self, sample_2x2_matrix):
+		matrix2 = Matrix(2, 2, [1, 2, 3, 4])
+		result = sample_2x2_matrix * matrix2
+		assert result.matrix == [[1, 4], [9, 16]]
+		result = sample_2x2_matrix * 2
+		assert result.matrix == [[2, 4], [6, 8]]
+		result = 2 * sample_2x2_matrix
+		assert result.matrix == [[2, 4], [6, 8]]
+		with pytest.raises(TypeError):
+			result = sample_2x2_matrix * 123.24
+		with pytest.raises(TypeError):
+			result = sample_2x2_matrix * "string"
+		with pytest.raises(ValueError):
+			result = sample_2x2_matrix * Matrix(2, 3, [1, 2, 3, 4, 5, 6])
+		with pytest.raises(ValueError):
+			result = sample_2x2_matrix * Matrix(3, 2, [1, 2, 3, 4, 5, 6])
+		with pytest.raises(TypeError):
+			result = sample_2x2_matrix * "string"
