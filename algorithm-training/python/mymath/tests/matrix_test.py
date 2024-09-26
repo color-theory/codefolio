@@ -43,3 +43,19 @@ class TestMatrix:
 			result = sample_2x2_matrix * Matrix(3, 2, [1, 2, 3, 4, 5, 6])
 		with pytest.raises(TypeError):
 			result = sample_2x2_matrix * "string"
+
+	def test_dot(self, sample_2x2_matrix):
+		matrix2 = Matrix(2, 2, [1, 2, 3, 4])
+		result = sample_2x2_matrix.dot(matrix2)
+		assert result.matrix == [[7, 10], [15, 22]]
+		result = sample_2x2_matrix.dot(Matrix(2, 3, [1, 2, 3, 4, 5, 6]))
+		assert result.matrix == [[9, 12, 15], [19, 26, 33]]
+		with pytest.raises(ValueError):
+			result = sample_2x2_matrix.dot(Matrix(3, 2, [1, 2, 3, 4, 5, 6]))
+		result = sample_2x2_matrix.dot(123.24)
+		assert result == NotImplemented
+		result = sample_2x2_matrix.dot("string")
+		assert result == NotImplemented
+		result = sample_2x2_matrix.dot(2)
+		assert result == NotImplemented
+		result = sample_2x2_matrix.dot("string")
