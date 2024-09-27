@@ -3,15 +3,25 @@ import pytest
 
 class TestMatrix:
 	@pytest.mark.parametrize("rows, columns, data, expected", [
+		(1, 1, [1], [[1]]),
+		(1, 2, [1, 2], [[1, 2]]),
+		(2, 1, [1, 2], [[1], [2]]),
 		(2, 2, [1, 2, 3, 4], [[1, 2], [3, 4]]),
-		(2, 2, [], [[None, None], [None, None]]),
-		(2, 2, [1, 2, 3], [[1, 2], [3, None]]),
-		(2, 2, [1, 2, 3, 4, 5], [[1, 2], [3, 4]])
+		(3, 2, [1, 2, 3, 4, 5, 6], [[1, 2], [3, 4], [5, 6]]),
+		(2, 3, [1, 2, 3, 4, 5, 6], [[1, 2, 3], [4, 5, 6]]),
 	])
-	def test_initialization(self, rows, columns, data, expected):
+	def test_normal_initialization(self, rows, columns, data, expected):
 		matrix = Matrix(rows, columns, data)
 		assert matrix.matrix == expected
-						 
+
+	def test_invalid_initialization(self):
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [1, 2, 3])
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [])
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [1, 2, 3, 4, 5])
+
 	def test_addition(self, sample_2x2_matrix):
 		matrix2 = Matrix(2, 2, [1, 2, 3, 4])
 		result = sample_2x2_matrix + matrix2
@@ -59,3 +69,42 @@ class TestMatrix:
 		result = sample_2x2_matrix.dot(2)
 		assert result == NotImplemented
 		result = sample_2x2_matrix.dot("string")
+
+	def test_transpose(self, sample_2x2_matrix):
+		result = sample_2x2_matrix.transpose()
+		assert result.matrix == [[1, 3], [2, 4]]
+		result = Matrix(3, 2, [1, 2, 3, 4, 5, 6]).transpose()
+		assert result.matrix == [[1, 3, 5], [2, 4, 6]]
+		result = Matrix(2, 3, [1, 2, 3, 4, 5, 6]).transpose()
+		assert result.matrix == [[1, 4], [2, 5], [3, 6]]
+
+	def test_copy(self):
+		matrix = Matrix(2, 2, [1, 2, 3, 4])
+		assert matrix.matrix == [[1, 2], [3, 4]]
+		result = matrix.copy()
+		assert result.matrix == [[1, 2], [3, 4]]
+		matrix.matrix[0][0] = 5
+		assert result.matrix == [[1, 2], [3, 4]]
+
+	def test_determinant(self):
+		matrix = Matrix(2, 2, [1, 2, 3, 4])
+		assert matrix.determinant() == -2
+		matrix = Matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+		assert matrix.determinant() == 0
+		matrix = Matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 10])
+		assert matrix.determinant() == -3
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 3, [1, 2, 3, 4, 5, 6])
+			matrix.determinant()
+		with pytest.raises(ValueError):
+			matrix = Matrix(3, 2, [1, 2, 3, 4, 5, 6])
+			matrix.determinant()
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [1, 2, 3, 4, 5])
+			matrix.determinant()
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [1, 2, 3])
+			matrix.determinant()
+		with pytest.raises(ValueError):
+			matrix = Matrix(2, 2, [])
+			matrix.determinant()
