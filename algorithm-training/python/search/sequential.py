@@ -8,19 +8,21 @@ def sequential_search(data, target):
 			return i
 	return -1
 
-def search_benchmark_with_size(n):
-	data = random.sample(range(n), n)
+def search_benchmark(data):
 	target = random.choice(data)
-	
 	start_time = time.perf_counter()
 	sequential_search(data, target)
 	elapsed_time = time.perf_counter() - start_time
 	
 	return elapsed_time
 
-max_size = 10000
-iterations = 200
-resolution = 200
-[times, sizes, total_time] = run_timing_benchmark(search_benchmark_with_size, max_size, iterations, resolution)
+def data_setup(size):
+	data = random.sample(range(size), size)
+	return data
 
+max_size = 10000
+iterations = 500
+resolution = 500
+
+[times, sizes, total_time] = run_timing_benchmark(search_benchmark, data_setup, max_size, iterations, resolution)
 plot_time(times, sizes, f"Sequential Search - iter: {iterations}, res: {resolution} - {total_time :.2f}s", True)
