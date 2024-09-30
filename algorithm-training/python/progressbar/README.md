@@ -1,0 +1,1 @@
+Just a simple utility function to print out a progress bar to std out
