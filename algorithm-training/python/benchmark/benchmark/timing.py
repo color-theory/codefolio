@@ -1,18 +1,34 @@
 from progressbar import print_progress
+import time
 import numpy as np
 
-def run_timing_benchmark(benchmark_func, max_size=1000, iterations=10, resolution=10):
+def run_timing_benchmark(benchmark_func, max_size=1000, iterations=100, resolution=50):
 	growth_rate = max_size // iterations
 	size = growth_rate
-	average_times = []
+	avg_times_per_size = []
+	total_time = 0
 	while size <= max_size:
 		print("\n")
 		elapsed_times = []
 		for x in range(resolution):
-			elapsed_times.append(benchmark_func(size))
+			elapsed = benchmark_func(size)
+			elapsed_times.append(elapsed)
+			total_time = total_time + elapsed
 			print_progress(x + 1, resolution, size)
-		average_times.append(np.mean(elapsed_times), size)
+		avg_times_per_size.append([np.mean(elapsed_times), size])
 		size = size + growth_rate
+
+	times = [x[0] for x in avg_times_per_size]
+	sizes = [x[1] for x in avg_times_per_size]
+
+	mean_time = np.mean(times)
+	std_dev_time = np.std(times)
+	lower_bound = mean_time - 2 * std_dev_time
+	upper_bound = mean_time + 2 * std_dev_time
+
+	non_outlier_indices = np.where((times >= lower_bound) & (times <= upper_bound))[0]
+	filtered_times = [times[i] for i in non_outlier_indices]
+	filtered_sizes = [sizes[i] for i in non_outlier_indices]
 	
-	return average_times
+	return filtered_times, filtered_sizes, total_time
 

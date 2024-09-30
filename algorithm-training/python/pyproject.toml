@@ -11,12 +11,10 @@ python = "^3.12"
 numpy = "^2.1.1"
 pytest = "^8.3.3"
 matplotlib = "^3.9.2"
-
-[tool.poetry.group.dev.dependencies]
-benchmark = {path = "benchmark"}
-reports = {path = "reports"}
 mymath = {path = "mymath"}
 progressbar = {path = "progressbar"}
+reports = {path = "reports"}
+benchmark = {path = "benchmark"}
 
 [build-system]
 requires = ["poetry-core"]
