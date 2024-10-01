@@ -21,15 +21,11 @@ def merge_sort(arr):
                 j += 1
             k += 1
 
-        while i < len(left_half):
-            arr[k] = left_half[i]
-            i += 1
-            k += 1
+        if i < len(left_half):
+            arr[k:] = left_half[i:]
 
-        while j < len(right_half):
-            arr[k] = right_half[j]
-            j += 1
-            k += 1
+        if j < len(right_half):
+            arr[k:] = right_half[j:]
 
     return arr
 
@@ -44,8 +40,8 @@ def data_setup(size):
 	return data
 
 max_size = 10000
-iterations = 50
-resolution = 1
+iterations = 100
+resolution = 100
 
 [times, sizes, total_time] = run_timing_benchmark(search_benchmark, data_setup, max_size, iterations, resolution)
-plot_time(times, sizes, f"Quick Sort - iter: {iterations}, res: {resolution} - {total_time :.2f}s")
+plot_time(times, sizes, f"Merge Sort - iter: {iterations}, res: {resolution} - {total_time :.2f}s")
