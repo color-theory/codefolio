@@ -1,7 +1,6 @@
 import random, time
 from reports import plot_time
 from benchmark import run_timing_benchmark
-import cProfile
 
 def binary_search(data, target):
 	low = 0

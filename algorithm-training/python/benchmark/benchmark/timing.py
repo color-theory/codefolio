@@ -2,7 +2,7 @@ from progressbar import print_progress
 import time
 import numpy as np
 
-def run_timing_benchmark(benchmark_func, setup_func, max_size=1000, iterations=100, resolution=50):
+def run_timing_benchmark(benchmark_func, setup_func, max_size=1000, iterations=100, resolution=50, algo_name="algorithm"):
 	growth_rate = max_size // iterations
 	size = growth_rate
 	avg_times_per_size = []
@@ -14,7 +14,7 @@ def run_timing_benchmark(benchmark_func, setup_func, max_size=1000, iterations=1
 			elapsed = benchmark_func(data)
 			elapsed_times.append(elapsed)
 			total_time = total_time + elapsed
-			print_progress(x + 1, resolution, size)
+			print_progress(x + 1, resolution, size, algo_name)
 		avg_times_per_size.append([np.mean(elapsed_times), size])
 		size = size + growth_rate
 

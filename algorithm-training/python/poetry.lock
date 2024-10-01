@@ -124,6 +124,19 @@ docs = ["ipython", "matplotlib", "numpydoc", "sphinx"]
 tests = ["pytest", "pytest-cov", "pytest-xdist"]
 
 [[package]]
+name = "datastructures"
+version = "0.1.0"
+description = ""
+optional = false
+python-versions = "^3.12"
+files = []
+develop = false
+
+[package.source]
+type = "directory"
+url = "datastructures"
+
+[[package]]
 name = "fonttools"
 version = "4.54.1"
 description = "Tools to manipulate font files"
@@ -677,4 +690,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c66265d5c4e834550e33feea1f02473b5fca2293434e996fc57fa5ccc38c6f55"
+content-hash = "3e3ff04aa21288584ac3b67b3bdd7c58dbf2bcaf7aa11950455c75f82c31b59e"
