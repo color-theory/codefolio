@@ -25,9 +25,9 @@ def data_setup(size):
 	data = random.sample(range(size), size)
 	return data
 
-max_size = 1000000
-iterations = 50
-resolution = 1
+max_size = 10000
+iterations = 100
+resolution = 100
 
 [times, sizes, total_time] = run_timing_benchmark(search_benchmark, data_setup, max_size, iterations, resolution)
 plot_time(times, sizes, f"Quick Sort - iter: {iterations}, res: {resolution} - {total_time :.2f}s")
