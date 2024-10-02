@@ -13,6 +13,7 @@ pytest = "^8.3.3"
 matplotlib = "^3.9.2"
 mymath = {path = "mymath"}
 reports = {path = "reports"}
+datastructures = {path = "datastructures"}
 benchmark = {path = "benchmark"}
 progressbar = {path = "progressbar"}
 
