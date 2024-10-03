@@ -1,4 +1,4 @@
 """
 reports module
 """
-from .timing import plot_time
+from .timing import plot_time, PlotConfig

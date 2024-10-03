@@ -11,11 +11,11 @@ python = "^3.12"
 numpy = "^2.1.1"
 pytest = "^8.3.3"
 matplotlib = "^3.9.2"
-reports = {path = "reports"}
 datastructures = {path = "datastructures"}
-benchmark = {path = "benchmark"}
 progressbar = {path = "progressbar"}
 mymath = {path = "mymath"}
+reports = {path = "reports"}
+benchmark = {path = "benchmark"}
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.3.1"
