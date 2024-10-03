@@ -1,17 +1,33 @@
+"""
+dictionary.py
+This module contains the dictionary_search function which is used
+to search for an element in a dictionary.
+"""
 import random
 import time
-from reports import plot_time
-from benchmark import run_timing_benchmark
-
-algo_name = "Dictionary Lookup"
+from benchmark import run_timing_benchmark, BenchmarkConfig
+from reports import plot_time, PlotConfig
 
 
 def dictionary_search(data, target):
-    result = data[target]
+    """
+    Search for an element in a dictionary
+
+    Parameters:
+    data: Dict: The dictionary to search
+    target: Any: The element to search for
+
+    Returns:
+    Any: The value of the element in the dictionary
+    """
+    return data[target]
 
 
 def search_benchmark(data):
-    keys = [key for key in data.keys()]
+    """
+    Benchmark the dictionary search function
+    """
+    keys = list(data.keys())
     target = random.choice(keys)
 
     start_time = time.perf_counter()
@@ -22,6 +38,9 @@ def search_benchmark(data):
 
 
 def data_setup(size):
+    """
+    Generate random data
+    """
     data = {}
     noise = random.sample(range(size), size)
     for i in noise:
@@ -30,11 +49,22 @@ def data_setup(size):
     return data
 
 
-max_size = 100000
-iterations = 100
-resolution = 100
+benchmark_config = BenchmarkConfig(
+    name="Dictionary Lookup",
+    max_size=20000,
+    iterations=200,
+    resolution=200,
+)
 
 [times, sizes, total_time] = run_timing_benchmark(
-    search_benchmark, data_setup, max_size, iterations, resolution, algo_name)
-plot_time(times, sizes,
-          f"{algo_name} - iter: {iterations}, res: {resolution} - {total_time:.2f}s")
+    search_benchmark, data_setup, benchmark_config)
+
+plot_config = PlotConfig(
+    {
+        "name": benchmark_config.name,
+        "iterations": benchmark_config.iterations,
+        "resolution": benchmark_config.resolution,
+    }
+)
+
+plot_time(times, sizes, total_time, plot_config)
