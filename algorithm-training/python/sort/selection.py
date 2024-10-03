@@ -20,13 +20,13 @@ def selection_sort(data):
     Returns:
     List: The sorted list of elements
     """
-    for i in range(len(data)):
+    for i, item in enumerate(data):
         lowest_number_index = i
         for j in range(i, len(data)):
             if data[j] < data[lowest_number_index]:
                 lowest_number_index = j
-        temp = data[i]
-        data[i] = data[lowest_number_index]
+        temp = item
+        item = data[lowest_number_index]
         data[lowest_number_index] = temp
     return data
 

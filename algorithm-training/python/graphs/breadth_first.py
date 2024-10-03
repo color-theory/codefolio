@@ -75,7 +75,7 @@ benchmark_config = BenchmarkConfig(
     name="Breadth First Search",
     max_size=10000,
     iterations=100,
-    resolution=100,
+    resolution=200,
 )
 
 [times, sizes, total_time] = run_timing_benchmark(
