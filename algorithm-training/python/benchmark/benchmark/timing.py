@@ -9,6 +9,7 @@ def run_timing_benchmark(benchmark_func, setup_func, max_size=1000, iterations=1
 	total_time = 0
 	while size <= max_size:
 		elapsed_times = []
+		print(f"\r setting up data...", end="")
 		data = setup_func(size)
 		for x in range(resolution):
 			elapsed = benchmark_func(data)
