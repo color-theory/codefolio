@@ -1,108 +1,186 @@
+"""
+matrix.py
+
+Matrix class for matrix operations
+
+Available Functions:
+- add(value): Add a value to the matrix
+- multiply(value): Multiply a value to the matrix
+- dot(value): Dot product of two matrices
+- transpose(): Transpose the matrix
+- flatten(): Flatten the matrix
+- copy(): Copy the matrix
+- determinant(): Calculate the determinant of the matrix
+"""
+
+
 class Matrix:
     """Matrix class"""
     rows = 0
     columns = 0
     matrix = []
-    matrixRow = []
-    dataCount = 0
-    tempMatrixList = []
-    tempProduct = 0
+    matrix_row = []
+    data_count = 0
+    temp_matrix_list = []
+    temp_product = 0
 
-    def __init__(self, rows, columns, data=[]):
+    def __init__(self, rows, columns, data):
+        """Initialize the matrix"""
+        if data is None:
+            data = []
         self.matrix = []
         self.rows = rows
         self.columns = columns
         if len(data) != rows * columns:
             raise ValueError("Data size does not match matrix size")
-        for i in range(rows):
-            self.matrixRow = []
-            for j in range(columns):
-                self.matrixRow.append(data[self.dataCount])
-                self.dataCount += 1
-            self.matrix.append(self.matrixRow)
+        for _ in range(rows):
+            self.matrix_row = []
+            for _ in range(columns):
+                self.matrix_row.append(data[self.data_count])
+                self.data_count += 1
+            self.matrix.append(self.matrix_row)
 
     def add(self, value):
-        if (type(value) == int):
-            self.tempMatrixList = []
+        """
+        Add a value to the matrix
+
+        Parameters:
+        value: int or Matrix
+
+        Returns:
+        Matrix: Result of the addition
+        """
+        if isinstance(value, int):
+            temp_matrix_list = []
             for i in range(self.rows):
                 for j in range(self.columns):
-                    self.tempMatrixList.append(self.matrix[i][j] + value)
-        elif (type(value) == Matrix):
-            self.tempMatrixList = []
+                    temp_matrix_list.append(self.matrix[i][j] + value)
+        elif isinstance(value, Matrix):
+            temp_matrix_list = []
             if self.rows != value.rows or self.columns != value.columns:
                 raise ValueError("Matrices are not of the same size")
             for i in range(self.rows):
                 for j in range(self.columns):
-                    self.tempMatrixList.append(
+                    temp_matrix_list.append(
                         self.matrix[i][j] + value.matrix[i][j])
         else:
             return NotImplemented
-        return Matrix(self.rows, self.columns, self.tempMatrixList)
+        return Matrix(self.rows, self.columns, temp_matrix_list)
 
     def __add__(self, value):
+        """Special method for addition"""
         return self.add(value)
 
     def __radd__(self, other):
+        """Special method for right addition"""
         return self.add(other)
 
     def multiply(self, value):
-        if (type(value) == int):
-            self.tempMatrixList = []
+        """
+        Multiply a value to the matrix
+
+        Parameters:
+        value: int or Matrix
+
+        Returns:
+        Matrix: Result of the multiplication
+        """
+        if isinstance(value, int):
+            temp_matrix_list = []
             for i in range(self.rows):
                 for j in range(self.columns):
-                    self.tempMatrixList.append(self.matrix[i][j] * value)
-        elif (type(value) == Matrix):
-            self.tempMatrixList = []
+                    temp_matrix_list.append(self.matrix[i][j] * value)
+        elif isinstance(value, Matrix):
+            temp_matrix_list = []
             if self.columns != value.columns or self.rows != value.rows:
                 raise ValueError("Matrices are not of the same size")
             for i in range(self.rows):
                 for j in range(value.columns):
-                    self.tempMatrixList.append(
+                    temp_matrix_list.append(
                         self.matrix[i][j] * value.matrix[i][j])
         else:
             return NotImplemented
-        return Matrix(self.rows, self.columns, self.tempMatrixList)
+        return Matrix(self.rows, self.columns, temp_matrix_list)
 
     def __mul__(self, value):
+        """
+        Special method for multiplication
+        """
         return self.multiply(value)
 
     def __rmul__(self, other):
+        """
+        Special method for right multiplication
+        """
         return self.multiply(other)
 
     def dot(self, value):
-        if (type(value) == Matrix):
+        """
+        Dot product of two matrices
+
+        Parameters:
+        value: Matrix
+
+        Returns:
+        Matrix: Result of the dot product
+        """
+        if isinstance(value, Matrix):
             if self.columns != value.rows:
                 raise ValueError("Matrices are not of compatible size")
-            self.tempMatrixList = []
+            temp_matrix_list = []
             for i in range(self.rows):
                 for j in range(value.columns):
-                    self.tempProduct = 0
+                    self.temp_product = 0
                     for k in range(self.columns):
-                        self.tempProduct += self.matrix[i][k] * \
+                        self.temp_product += self.matrix[i][k] * \
                             value.matrix[k][j]
-                    self.tempMatrixList.append(self.tempProduct)
+                    temp_matrix_list.append(self.temp_product)
         else:
             return NotImplemented
-        return Matrix(self.rows, value.columns, self.tempMatrixList)
+        return Matrix(self.rows, value.columns, temp_matrix_list)
 
     def transpose(self):
-        self.tempMatrixList = []
+        """
+        Transpose the matrix
+
+        Returns:
+        Matrix: Transposed matrix
+        """
+        temp_matrix_list = []
         for i in range(self.columns):
             for j in range(self.rows):
-                self.tempMatrixList.append(self.matrix[j][i])
-        return Matrix(self.columns, self.rows, self.tempMatrixList)
+                temp_matrix_list.append(self.matrix[j][i])
+        return Matrix(self.columns, self.rows, temp_matrix_list)
 
     def flatten(self):
-        self.tempMatrixList = []
+        """
+        Flatten the matrix
+
+        Returns:
+        list: Flattened matrix
+        """
+        temp_matrix_list = []
         for r in range(self.rows):
             for c in range(self.columns):
-                self.tempMatrixList.append(self.matrix[r][c])
-        return self.tempMatrixList
+                temp_matrix_list.append(self.matrix[r][c])
+        return temp_matrix_list
 
     def copy(self):
+        """
+        Copy the matrix
+
+        Returns:
+        Matrix: Copied matrix
+        """
         return Matrix(self.rows, self.columns, self.flatten())
 
     def determinant(self):
+        """
+        Calculate the determinant of the matrix
+
+        Returns:
+        int: Determinant of the matrix
+        """
         if self.rows != self.columns:
             raise ValueError("Matrix is not square")
         if self.rows == 2:
@@ -111,16 +189,16 @@ class Matrix:
         result = 0
         rows = list(range(len(self.matrix)))
         for focus in rows:
-            tempMatrix = self.copy()
-            tempMatrix.matrix = tempMatrix.matrix[1:]
-            subrows = len(tempMatrix.matrix)
+            temp_matrix = self.copy()
+            temp_matrix.matrix = temp_matrix.matrix[1:]
+            subrows = len(temp_matrix.matrix)
             for j in range(subrows):
-                tempMatrix.matrix[j] = tempMatrix.matrix[j][0:focus] + \
-                    tempMatrix.matrix[j][focus+1:]
+                temp_matrix.matrix[j] = temp_matrix.matrix[j][0:focus] + \
+                    temp_matrix.matrix[j][focus+1:]
             sign = (-1) ** (focus % 2)
-            tempMatrix.rows -= 1
-            tempMatrix.columns -= 1
-            subdeterminant = tempMatrix.determinant()
+            temp_matrix.rows -= 1
+            temp_matrix.columns -= 1
+            subdeterminant = temp_matrix.determinant()
 
             result += sign * self.matrix[0][focus] * subdeterminant
         return result
