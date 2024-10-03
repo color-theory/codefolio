@@ -1,6 +1,12 @@
-import numpy as np
-import random
+"""
+numpy_basics.py
+
+Just testing some basic operations with numpy
+"""
 from itertools import permutations, combinations
+import random
+import numpy as np
+
 
 vector1 = np.array([1, 2, 3])
 print("Vector with scalar:")
@@ -59,9 +65,12 @@ except np.linalg.LinAlgError:
 
 # Matrix multiplication
 print("Matrix dot product multiplication:")
-# [[30 24 18] [84 69 54]] The number of rows in matrix2 must match the number of columns in myMatrix and is the number of rows in the final product matrix
+# [[30 24 18] [84 69 54]] The number of rows in matrix2 must match
+# the number of columns in myMatrix and is the number of rows in the
+# final product matrix
 print(np.dot(myMatrix, matrix2))
-# [[30 24 18] [84 69 54]] * performs dot product becausse both are np.matrix objects np.array * performs element-wise multiplication
+# [[30 24 18] [84 69 54]] * performs dot product becausse both are
+# np.matrix objects np.array * performs element-wise multiplication
 print(myMatrix * matrix2)
 
 # Element by element multiplication
@@ -102,7 +111,8 @@ for i in permutations(myVector):
 
 # list comprehension
 print("List comprehension:")
-[print(f"({i[0]}, {i[1]}, {i[2]}, {i[3]})") for i in permutations(myVector)]
+for i in permutations(myVector):
+    print(f"({i[0]}, {i[1]}, {i[2]}, {i[3]})")
 
 # Combinations
 print("Combinations:")
@@ -111,7 +121,8 @@ for i in combinations(myVector, 2):
 
 # list comprehension
 print("List comprehension:")
-[print(f"({i[0]}, {i[1]})") for i in combinations(myVector, 2)]
+for i in combinations(myVector, 2):
+    print(f"({i[0]}, {i[1]})")
 
 # sample
 pool = []
