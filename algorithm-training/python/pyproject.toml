@@ -14,8 +14,8 @@ matplotlib = "^3.9.2"
 datastructures = {path = "datastructures"}
 progressbar = {path = "progressbar"}
 mymath = {path = "mymath"}
-reports = {path = "reports"}
 benchmark = {path = "benchmark"}
+reports = {path = "reports"}
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.3.1"

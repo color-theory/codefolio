@@ -22,7 +22,7 @@ class BenchmarkConfig:
     Benchmark configuration class
     """
 
-    def __init__(self, config: dict):
+    def __init__(self, max_size, iterations, resolution, name):
         """
         Initialize the BenchmarkConfig class
 
@@ -32,10 +32,10 @@ class BenchmarkConfig:
         resolution: int: The number of times to run the benchmark for each step
         name: str: The name of the algorithm
         """
-        self.max_size = config["max_size"]
-        self.iterations = config["iterations"]
-        self.resolution = config["resolution"]
-        self.name = config["name"]
+        self.max_size = max_size
+        self.iterations = iterations
+        self.resolution = resolution
+        self.name = name
         self.validate()
 
     def __str__(self):

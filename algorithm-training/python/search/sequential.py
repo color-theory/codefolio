@@ -47,12 +47,10 @@ def data_setup(size):
 
 
 benchmark_config = BenchmarkConfig(
-    {
-        "name": "Sequential Search",
-        "max_size": 20000,
-        "iterations": 100,
-        "resolution": 100,
-    }
+    name="Sequential Search",
+    max_size=20000,
+    iterations=100,
+    resolution=100,
 )
 
 [times, sizes, total_time] = run_timing_benchmark(
