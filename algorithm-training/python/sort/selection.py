@@ -16,8 +16,10 @@ def selection_sort(data):
 
     Parameters:
     data: List: The list of elements to sort
-    """
 
+    Returns:
+    List: The sorted list of elements
+    """
     for i in range(len(data)):
         lowest_number_index = i
         for j in range(i, len(data)):
@@ -26,6 +28,7 @@ def selection_sort(data):
         temp = data[i]
         data[i] = data[lowest_number_index]
         data[lowest_number_index] = temp
+    return data
 
 
 def search_benchmark(data):

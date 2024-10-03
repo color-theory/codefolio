@@ -1,10 +1,26 @@
+"""
+merge.py
+this module contains the merge_sort function which is used
+to sort a list of elements by dividing the list into two halves
+and then merging the sorted halves.
+"""
 import random
 import time
-from reports import plot_time
-from benchmark import run_timing_benchmark
+from benchmark import run_timing_benchmark, BenchmarkConfig
+from reports import plot_time, PlotConfig
 
 
 def merge_sort(arr):
+    """
+    Sort a list of elements by dividing the list into two halves
+    and then merging the sorted halves.
+
+    Parameters:
+    arr: List: The list of elements to sort
+
+    Returns:
+    List: The sorted list of elements
+    """
     if len(arr) > 1:
         mid = len(arr) // 2
         left_half = arr[:mid]
@@ -33,6 +49,9 @@ def merge_sort(arr):
 
 
 def search_benchmark(data):
+    """
+    Benchmark the merge_sort function
+    """
     start_time = time.perf_counter()
     merge_sort(data)
     elapsed_time = time.perf_counter() - start_time
@@ -40,15 +59,29 @@ def search_benchmark(data):
 
 
 def data_setup(size):
+    """
+    Generate random data
+    """
     data = random.sample(range(size), size)
     return data
 
 
-max_size = 10000
-iterations = 100
-resolution = 100
+benchmark_config = BenchmarkConfig(
+    name="Merge Sort",
+    max_size=1000,
+    iterations=100,
+    resolution=100,
+)
 
 [times, sizes, total_time] = run_timing_benchmark(
-    search_benchmark, data_setup, max_size, iterations, resolution)
-plot_time(times, sizes,
-          f"Merge Sort - iter: {iterations}, res: {resolution} - {total_time:.2f}s")
+    search_benchmark, data_setup, benchmark_config)
+
+plot_config = PlotConfig(
+    {
+        "name": benchmark_config.name,
+        "iterations": benchmark_config.iterations,
+        "resolution": benchmark_config.resolution,
+    }
+)
+
+plot_time(times, sizes, total_time, plot_config)
