@@ -51,9 +51,9 @@ def data_setup(size):
 
 benchmark_config = BenchmarkConfig(
     name="SimpleHashTable Lookup",
-    max_size=20000,
-    iterations=200,
-    resolution=200,
+    max_size=10000,
+    iterations=500,
+    resolution=100,
 )
 
 [times, sizes, total_time] = run_timing_benchmark(

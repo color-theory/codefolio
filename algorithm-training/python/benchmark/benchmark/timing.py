@@ -58,32 +58,27 @@ class BenchmarkConfig:
             raise ValueError("iterations must be a positive integer.")
 
 
-def filter_outliers(average_times_per_size):
+def filter_outliers(items):
     """
     filter_outliers is used to filter out the outliers from the data
 
     Parameters:
-    average_times_per_size: List[List[float, int]]: The average times for each size
+    items: List[float]: The data to filter
 
     Returns:
-    Tuple[
-    filtered_times: List[float] The avg time for the algorithm to run per size
-    filtered_sizes: List[int] The size of the data at each step
-    """
-    times = [x[0] for x in average_times_per_size]
-    sizes = [x[1] for x in average_times_per_size]
 
-    mean_time = np.mean(times)
-    std_dev_time = np.std(times)
-    lower_bound = mean_time - 2 * std_dev_time
-    upper_bound = mean_time + 2 * std_dev_time
+    """
+    mean_time = np.mean(items)
+    std_dev_time = np.std(items)
+    lower_bound = mean_time - std_dev_time
+    upper_bound = mean_time + std_dev_time
 
     non_outlier_indices = np.where(
-        (times >= lower_bound) & (times <= upper_bound))[0]
-    filtered_times = [times[i] for i in non_outlier_indices]
-    filtered_sizes = [sizes[i] for i in non_outlier_indices]
+        (items >= lower_bound) & (items <= upper_bound))[0]
 
-    return filtered_times, filtered_sizes
+    filtered_times = [items[i] for i in non_outlier_indices]
+
+    return filtered_times
 
 
 def run_timing_benchmark(benchmark, data_setup, config: BenchmarkConfig):
@@ -120,10 +115,12 @@ def run_timing_benchmark(benchmark, data_setup, config: BenchmarkConfig):
             elapsed_times.append(elapsed)
             total_time = total_time + elapsed
             print_progress(x + 1, config.resolution, size, config.name)
-        avg_times_per_size.append([np.mean(elapsed_times), size])
+        filtered_times = filter_outliers(elapsed_times)
+        avg_times_per_size.append([np.mean(filtered_times), size])
         size = size + growth_rate
 
     print("\n")
 
-    filtered_times, filtered_sizes = filter_outliers(avg_times_per_size)
-    return filtered_times, filtered_sizes, total_time
+    times = [x[0] for x in avg_times_per_size]
+    sizes = [x[1] for x in avg_times_per_size]
+    return times, sizes, total_time
