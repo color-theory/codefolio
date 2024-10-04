@@ -1,7 +1,8 @@
 """
-binary.py
-This module contains the binary_search function which is used
-to search for an element in a list using binary search.
+selection.py
+
+This module contains the selection function which is used
+to sort a list of elements sequentially.
 """
 import random
 import time
@@ -9,37 +10,33 @@ from benchmark import run_timing_benchmark, BenchmarkConfig
 from reports import plot_time, PlotConfig
 
 
-def binary_search(data, target):
+def selection_sort(data):
     """
-    Search for an element in a list using binary search
+    Sort a list of elements sequentially
 
     Parameters:
-    data: List: The list to search
-    target: Any: The element to search for
+    data: List: The list of elements to sort
 
     Returns:
-    int: The index of the element in the list
+    List: The sorted list of elements
     """
-    low = 0
-    high = len(data) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if data[mid] == target:
-            return mid
-        if data[mid] < target:
-            low = mid + 1
-        else:
-            high = mid - 1
-    return -1
+    for i, item in enumerate(data):
+        lowest_number_index = i
+        for j in range(i, len(data)):
+            if data[j] < data[lowest_number_index]:
+                lowest_number_index = j
+        temp = item
+        item = data[lowest_number_index]
+        data[lowest_number_index] = temp
+    return data
 
 
 def search_benchmark(data):
     """
-    Benchmark the binary search function
+    Benchmark the sequential_sort function
     """
-    target = random.choice(data)
     start_time = time.perf_counter()
-    binary_search(data, target)
+    selection_sort(data)
     elapsed_time = time.perf_counter() - start_time
 
     return elapsed_time
@@ -54,10 +51,10 @@ def data_setup(size):
 
 
 benchmark_config = BenchmarkConfig(
-    name="Binary Search",
-    max_size=50000,
+    name="Selection Sort",
+    max_size=1000,
     iterations=100,
-    resolution=500,
+    resolution=100,
 )
 
 [times, sizes, total_time] = run_timing_benchmark(

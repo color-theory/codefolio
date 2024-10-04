@@ -1,32 +1,70 @@
-import random, time
-from reports import plot_time
-from benchmark import run_timing_benchmark
+"""
+dictionary.py
+This module contains the dictionary_search function which is used
+to search for an element in a dictionary.
+"""
+import random
+import time
+from benchmark import run_timing_benchmark, BenchmarkConfig
+from reports import plot_time, PlotConfig
 
-algo_name = "Dictionary Lookup"
+
 def dictionary_search(data, target):
-	result = data[target]
+    """
+    Search for an element in a dictionary
+
+    Parameters:
+    data: Dict: The dictionary to search
+    target: Any: The element to search for
+
+    Returns:
+    Any: The value of the element in the dictionary
+    """
+    return data[target]
+
 
 def search_benchmark(data):
-	keys = [key for key in data.keys()]
-	target = random.choice(keys)
+    """
+    Benchmark the dictionary search function
+    """
+    keys = list(data.keys())
+    target = random.choice(keys)
 
-	start_time = time.perf_counter()
-	dictionary_search(data, target)
-	elapsed_time = time.perf_counter() - start_time
-	
-	return elapsed_time
+    start_time = time.perf_counter()
+    dictionary_search(data, target)
+    elapsed_time = time.perf_counter() - start_time
+
+    return elapsed_time
+
 
 def data_setup(size):
-	data = {}
-	noise = random.sample(range(size), size)
-	for i in noise:
-		data[i] = i * 2
+    """
+    Generate random data
+    """
+    data = {}
+    noise = random.sample(range(size), size)
+    for i in noise:
+        data[i] = i * 2
 
-	return data
+    return data
 
-max_size = 100000
-iterations = 100
-resolution = 100
 
-[times, sizes, total_time] = run_timing_benchmark(search_benchmark, data_setup, max_size, iterations, resolution, algo_name)
-plot_time(times, sizes, f"{algo_name} - iter: {iterations}, res: {resolution} - {total_time :.2f}s")
+benchmark_config = BenchmarkConfig(
+    name="Dictionary Lookup",
+    max_size=20000,
+    iterations=200,
+    resolution=200,
+)
+
+[times, sizes, total_time] = run_timing_benchmark(
+    search_benchmark, data_setup, benchmark_config)
+
+plot_config = PlotConfig(
+    {
+        "name": benchmark_config.name,
+        "iterations": benchmark_config.iterations,
+        "resolution": benchmark_config.resolution,
+    }
+)
+
+plot_time(times, sizes, total_time, plot_config)

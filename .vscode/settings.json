@@ -1,3 +1,10 @@
 {
-	"dotnet.defaultSolution": "dotnet.sln"
+    "dotnet.defaultSolution": "dotnet.sln",
+    "python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": true,
+    }
 }
