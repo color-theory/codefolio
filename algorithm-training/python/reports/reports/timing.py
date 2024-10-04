@@ -27,8 +27,8 @@ class PlotConfig:
         self.resolution = config["resolution"]
         self.trend = config["trend"] if "trend" in config else False
         self.connect = config["connect"] if "connect" in config else False
-        self.y_limit_min = config["y_limit_min"]
-        self.y_limit_max = config["y_limit_max"]
+        self.y_limit_min = config["y_limit_min"] if "y_limit_min" in config else None
+        self.y_limit_max = config["y_limit_max"] if "y_limit_max" in config else None
 
     def __str__(self):
         return (
