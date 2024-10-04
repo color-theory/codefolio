@@ -27,6 +27,8 @@ class PlotConfig:
         self.resolution = config["resolution"]
         self.trend = config["trend"] if "trend" in config else False
         self.connect = config["connect"] if "connect" in config else False
+        self.y_limit_min = config["y_limit_min"]
+        self.y_limit_max = config["y_limit_max"]
 
     def __str__(self):
         return (
@@ -75,4 +77,6 @@ def plot_time(times, sizes, total_time, config):
         f"{config.name} - iter: {config.iterations}, res: "
         f"{config.resolution} - {total_time:.2f}s"
     )
+    if config.y_limit_min is not None and config.y_limit_max is not None:
+        plt.ylim(config.y_limit_min, config.y_limit_max)
     plt.show()

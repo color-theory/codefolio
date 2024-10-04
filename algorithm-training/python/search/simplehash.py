@@ -5,6 +5,7 @@ to search for an element in a SimpleHashTable.
 """
 import random
 import time
+import numpy as np
 from benchmark import run_timing_benchmark, BenchmarkConfig
 from datastructures import SimpleHashTable
 from reports import plot_time, PlotConfig
@@ -64,6 +65,8 @@ plot_config = PlotConfig(
         "name": benchmark_config.name,
         "iterations": benchmark_config.iterations,
         "resolution": benchmark_config.resolution,
+        "y_limit_min": np.float64(-.2e-5),
+        "y_limit_max": np.float64(.5e-5),
     }
 )
 
