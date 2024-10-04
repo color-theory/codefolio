@@ -23,6 +23,7 @@ def depth_first_search(data, start, target):
         return True
     for node in data[start]:
         depth_first_search(data, node, target)
+    return False
 
 
 def search_benchmark(data):
