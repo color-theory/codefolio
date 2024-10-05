@@ -70,7 +70,6 @@ def huffman_encode_message(message):
             encode_tree(node.right, encoding + '1')
 
     encode_tree(heap[0], '')
-
     # Encode the message
     encoded_message = "".join([encoding_dictionary[char] for char in message])
 
