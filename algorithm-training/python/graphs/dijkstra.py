@@ -21,21 +21,17 @@ def dijkstra(graph: Graph, start: WeightedDirectedGraphNode, end: WeightedDirect
     Returns:
     str: The shortest path from start to end
     """
-    # Initialize the distance to each node
     distances = {node: math.inf for node in graph}
     distances[start] = 0
 
-    # Initialize the previous node for each node
     parents: Dict[WeightedDirectedGraphNode, Optional[WeightedDirectedGraphNode]] = {
         node: None for node in graph}
 
-    # Initialize the priority queue
     queue = [(0, start)]
 
     while queue:
         current_distance, current_node = heapq.heappop(queue)
 
-        # Check if we have already found a shorter path
         if current_distance > distances[current_node]:
             continue
 
