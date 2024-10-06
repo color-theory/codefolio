@@ -24,12 +24,24 @@ class GraphNode:
     def add_neighbor(self, neighbor: "GraphNode"):
         """Add a neighbor to the node"""
         if neighbor not in self.neighbors:
-            self.neighbors.append((neighbor))
+            self.neighbors.append(neighbor)
             neighbor.add_neighbor(self)
 
     def get_neighbors(self):
         """Get the neighbors of the node"""
         return self.neighbors
+
+    def __iter__(self):
+        return iter(self.neighbors)
+
+    def __hash__(self) -> int:
+        return hash(self.value)
+
+    def __eq__(self, other) -> bool:
+        return self.value == other.value
+
+    def __lt__(self, other) -> bool:
+        return self.value < other.value
 
 
 class DirectedGraphNode(GraphNode):
@@ -87,3 +99,30 @@ class WeightedDirectedGraphNode(DirectedGraphNode):
         """Add a neighbor to the node"""
         if not any(n == neighbor for n, _ in self.neighbors):
             self.neighbors.append((neighbor, weight))
+
+
+class Graph:
+    """
+    A graph data structure
+
+    Attributes:
+    nodes: Dict: A dictionary of nodes in the graph
+
+    Methods:
+    add_node: Add a node to the graph
+    add_edge: Add an edge between two nodes in the graph
+    """
+
+    def __init__(self):
+        self.nodes = {}
+
+    def add_node(self, node: GraphNode):
+        """Add a node to the graph"""
+        self.nodes[node.value] = node
+        return node
+
+    def __iter__(self):
+        return iter(self.nodes.values())
+
+    def __getitem__(self, key):
+        return self.nodes[key]
