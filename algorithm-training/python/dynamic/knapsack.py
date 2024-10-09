@@ -6,12 +6,25 @@ from typing import List
 
 
 class Item:
+    """
+    A class to represent an item in the knapsack problem
+    """
+
     def __init__(self, weight, value):
         self.weight = weight
         self.value = value
 
     def __repr__(self):
         return f"Item({self.weight}, {self.value})"
+
+    def validate(self):
+        """
+        Validate the item's weight and value
+        """
+        if self.weight < 0:
+            raise ValueError("Weight must be a non-negative integer")
+        if self.value < 0:
+            raise ValueError("Value must be a non-negative integer")
 
 
 def knapsack(items: List[Item], capacity):
@@ -40,7 +53,5 @@ def knapsack(items: List[Item], capacity):
     return dp[n][capacity]
 
 
-capacity = 5
-items = [Item(2, 6), Item(2, 10), Item(3, 12)]
-
-print(knapsack(items, capacity))
+available_items = [Item(2, 6), Item(2, 10), Item(3, 12)]
+print(knapsack(available_items, 5))
