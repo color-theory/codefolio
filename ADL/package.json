@@ -1,0 +1,14 @@
+{
+  "name": "adl",
+  "version": "1.0.0",
+  "description": "A log of my architectural decision records",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "madr": "^4.0.0"
+  }
+}
