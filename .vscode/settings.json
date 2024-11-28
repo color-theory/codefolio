@@ -1,5 +1,5 @@
 {
-    "dotnet.defaultSolution": "dotnet.sln",
+    "dotnet.defaultSolution": "DotnetAlgos.sln",
     "python.analysis.typeCheckingMode": "basic",
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
