@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "types": ["jest"],
+      "module": "commonjs",
+      "target": "esnext",
+      "esModuleInterop": true,
+      "strict": true
+    },
+    "exclude": ["node_modules"]
+  }
