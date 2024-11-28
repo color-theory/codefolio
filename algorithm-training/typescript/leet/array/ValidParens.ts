@@ -15,6 +15,8 @@ export const validateParens = (s: string) => {
       } else {
         return false;
       }
+    } else {
+      return false;
     }
   }
 
