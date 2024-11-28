@@ -7,12 +7,12 @@ Change the array nums such that the first k elements of nums contain the unique 
 Return k.
 */
 export const removeDuplicates = (nums: number[]): number => {
-  let leftIndex = 1;
-  for (let rightIndex = 1; rightIndex < nums.length; rightIndex++) {
-    if (nums[rightIndex] !== nums[rightIndex - 1]) {
-      nums[leftIndex] = nums[rightIndex];
-      leftIndex++;
+    let leftIndex = 1;
+    for (let rightIndex = 1; rightIndex < nums.length; rightIndex++) {
+        if (nums[rightIndex] !== nums[rightIndex - 1]) {
+            nums[leftIndex] = nums[rightIndex];
+            leftIndex++;
+        }
     }
-  }
-  return leftIndex;
+    return leftIndex;
 };

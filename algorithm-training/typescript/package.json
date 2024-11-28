@@ -1,25 +1,25 @@
 {
-  "name": "stringeralgorithmsandcv",
-  "version": "1.0.0",
-  "description": "js",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/color-theory/StringerAlgorithmsAndCV.git"
-  },
-  "author": "John Stringer",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/color-theory/StringerAlgorithmsAndCV/issues"
-  },
-  "homepage": "https://github.com/color-theory/StringerAlgorithmsAndCV#readme",
-  "dependencies": {
-    "@types/jest": "^29.5.14",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.2.5",
-    "typescript": "^5.6.2"
-  }
+    "name": "stringeralgorithmsandcv",
+    "version": "1.0.0",
+    "description": "js",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/color-theory/StringerAlgorithmsAndCV.git"
+    },
+    "author": "John Stringer",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/color-theory/StringerAlgorithmsAndCV/issues"
+    },
+    "homepage": "https://github.com/color-theory/StringerAlgorithmsAndCV#readme",
+    "dependencies": {
+        "@types/jest": "^29.5.14",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5",
+        "typescript": "^5.6.2"
+    }
 }

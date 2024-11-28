@@ -7,5 +7,5 @@ Return the array ans.
 */
 
 export const getConcatenation = (nums: number[]): number[] => {
-  return [...nums, ...nums];
+    return [...nums, ...nums];
 };

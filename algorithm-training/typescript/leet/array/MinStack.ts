@@ -12,32 +12,32 @@ You must implement a solution with O(1) time complexity for each function.
 */
 
 export class MinStack {
-  public stack: number[] = [];
-  public mins: number[] = [];
+    public stack: number[] = [];
+    public mins: number[] = [];
 
-  constructor() {}
+    constructor() {}
 
-  push(val: number): void {
-    if (this.mins.length == 0 || val <= this.mins[this.mins.length - 1]) {
-      this.mins.push(val);
+    push(val: number): void {
+        if (this.mins.length == 0 || val <= this.mins[this.mins.length - 1]) {
+            this.mins.push(val);
+        }
+        this.stack.push(val);
     }
-    this.stack.push(val);
-  }
 
-  pop(): void {
-    const removed = this.stack.pop();
-    if (removed == this.mins[this.mins.length - 1]) {
-      this.mins.pop();
+    pop(): void {
+        const removed = this.stack.pop();
+        if (removed == this.mins[this.mins.length - 1]) {
+            this.mins.pop();
+        }
     }
-  }
 
-  top(): number {
-    return this.stack[this.stack.length - 1];
-  }
+    top(): number {
+        return this.stack[this.stack.length - 1];
+    }
 
-  getMin(): number {
-    return this.mins[this.mins.length - 1];
-  }
+    getMin(): number {
+        return this.mins[this.mins.length - 1];
+    }
 }
 
 /**

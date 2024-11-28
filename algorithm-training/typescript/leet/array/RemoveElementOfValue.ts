@@ -8,12 +8,12 @@ Return k.
 */
 
 export const removeElement = (nums: number[], val: number): number => {
-  let leftIndex = 0;
-  for (let rightIndex = 0; rightIndex < nums.length; rightIndex++) {
-    if (nums[rightIndex] !== val) {
-      nums[leftIndex] = nums[rightIndex];
-      leftIndex++;
+    let leftIndex = 0;
+    for (let rightIndex = 0; rightIndex < nums.length; rightIndex++) {
+        if (nums[rightIndex] !== val) {
+            nums[leftIndex] = nums[rightIndex];
+            leftIndex++;
+        }
     }
-  }
-  return leftIndex;
+    return leftIndex;
 };
