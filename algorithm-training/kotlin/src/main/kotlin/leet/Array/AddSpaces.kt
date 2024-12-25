@@ -37,15 +37,15 @@ All the values of spaces are strictly increasing.
 package leet.Array
 class AddSpaces {
     fun addSpaces(s: String, spaces: IntArray): String {
-        var newString = ""
+        var newString = StringBuilder()
         var spaceIndex = 0;
         for(i in s.indices){
             if(spaceIndex < spaces.size && i == spaces[spaceIndex]){
-                newString += " "
+                newString.append(" ")
                 spaceIndex++
             }
-            newString += s[i]
+            newString.append(s[i])
         }
-        return newString
+        return newString.toString()
     }
 }
