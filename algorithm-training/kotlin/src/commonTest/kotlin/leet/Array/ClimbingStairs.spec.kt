@@ -1,7 +1,7 @@
 package leet.Array
 
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.assertEquals
+import kotlin.test.assertEquals
+import kotlin.test.Test
 
 class ClimbStairsTest {
     
