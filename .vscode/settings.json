@@ -6,5 +6,6 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
         "editor.detectIndentation": true,
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
